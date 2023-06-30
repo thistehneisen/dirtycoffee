@@ -1,0 +1,7 @@
+# directories
+node_modules/*
+static/*
+
+# files
+package-lock.json
+coffee.db

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Caffeinator 3000">
+    <meta name="generator" content="Caffeine">
+    <meta name="theme-color" content="#712cf9">
+    <title>{{ title }}</title>
+    {% assets 'bootstrap_css' %}
+    <link rel="stylesheet" href="{{ ASSET_URL }}">
+    {% endassets %}
+</head>
+<body>
+    {{ body|safe }}
+
+    {% assets 'bootstrap_js' %}
+    <script src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+</body>
+</html>
