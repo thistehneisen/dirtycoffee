@@ -43,10 +43,15 @@ def home():
     except Exception:
         return '500'
 
-@app.route('/<name>')
-def dosage():
-    result = subprocess.run(['whoami'], stdout=subprocess.PIPE)
-    return result.stdout.decode().strip()
+@app.route('/cels', methods = ['POST','GET'])
+def writeToFile():
+  if request.method == "GET":
+     return "JSON"
+  elif request.method == "POST":
+     return "dbreq"
+  else:
+     return "Wattcha requests"
+  request_type = request.content_type
 
 if __name__ == '__main__':
     app.run(debug=debug, passthrough_errors=debug, host=host, port=8080)

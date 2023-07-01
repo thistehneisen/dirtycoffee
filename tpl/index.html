@@ -1,1 +1,12 @@
 {% extends "base.html" %}
+
+{% set title = 'Caffeinator 3000' %}
+
+{% block content %}
+    <h1>CleanCoffee</h1>
+    <select>
+    {% for employee in employees %}
+            <option value="e">{{ employee }}</option>
+    {% endfor %}
+    </select>
+{% endblock %}
