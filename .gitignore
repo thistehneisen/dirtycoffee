@@ -1,6 +1,7 @@
 # directories
 node_modules/*
 static/gen/*
+static/.webassets-cache/*
 
 # files
 .DS_Store
