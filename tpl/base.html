@@ -1,21 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Caffeinator 3000">
     <meta name="generator" content="Caffeine">
     <meta name="theme-color" content="#712cf9">
-    <title>{{ title }}</title>
+    <title>{{ title }}{% if section %} - {{ section }}{% endif %}</title>
     {% assets 'bootstrap_css' %}
     <link rel="stylesheet" href="{{ ASSET_URL }}">
     {% endassets %}
+    <link rel="stylesheet" href="static/custom.css">
+
+    <link rel="apple-touch-icon" href="static/favicon.png" sizes="180x180">
+    <link rel="icon" href="static/favicon.png" type="image/png">
 </head>
-<body>
-    {{ body|safe }}
+
+<body class="d-flex h-100 text-center text-white bg-dark">
+    
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="mb-auto">
+        <div>
+          <h3 class="float-md-start mb-0">DirtyCoffee</h3>
+          <nav class="nav nav-masthead justify-content-center float-md-end">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </nav>
+        </div>
+      </header>
+    
+      <main class="px-3">
+        {% block content %}{% endblock %}
+      </main>
+    
+      <footer class="mt-auto text-white-50">
+        <p>&copy; 2023</p>
+      </footer>
+    </div>
 
     {% assets 'bootstrap_js' %}
     <script src="{{ ASSET_URL }}"></script>
     {% endassets %}
+    <script src="static/dirtycoffee.js"></script>
 </body>
 </html>

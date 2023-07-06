@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
 from flask_assets import Environment, Bundle
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -7,6 +7,7 @@ import subprocess
 
 debug = True
 host = '127.0.0.1' # host for the DirtyCoffee to be ran at
+title = 'DirtyCoffee' # global site title
 
 app = Flask(__name__, template_folder='tpl')
 basedir = os.path.abspath(os.path.dirname(__file__)) # directory of current script
@@ -35,23 +36,35 @@ assets.register('bootstrap_css', bootstrap_css)
 
 @app.route('/')
 def home():
-    title = "Coffee wars"
-    body = "<h1>&nbsp;</h1>"
-    
     try:
-        return render_template("index.html", title = title, body = body)
-    except Exception:
-        return '500'
+        return render_template("index.html", title = title)
+    except Exception as e:
+        return '500: ' + str(e)
 
-@app.route('/cels', methods = ['POST','GET'])
-def writeToFile():
-  if request.method == "GET":
-     return "JSON"
-  elif request.method == "POST":
-     return "dbreq"
-  else:
-     return "Wattcha requests"
-  request_type = request.content_type
+@app.route('/employees', methods = ['GET'])
+def get_employees():
+    employees = Caffeinator.query.all() 
+    employees_list = [e.__dict__ for e in employees]
+    for e in employees_list:
+        e.pop('_sa_instance_state', None)
+    return jsonify(employees_list)
+
+@app.route('/employees', methods = ['POST'])
+def add_employee():
+    name = request.form.get('name')
+    caffeinator = Caffeinator(name=name)
+    db.session.add(caffeinator)
+    db.session.commit() 
+    return jsonify(message="New caffeinator added to the database")
+
+@app.route('/employees/<name>', methods = ['DELETE'])
+def delete_employee(name):
+    caffeinator = Caffeinator.query.get(name)
+    if caffeinator is None:
+        return jsonify(message="Employee not found"), 404
+    db.session.delete(caffeinator)
+    db.session.commit()
+    return jsonify(message="Employee deleted successfully")
 
 if __name__ == '__main__':
     app.run(debug=debug, passthrough_errors=debug, host=host, port=8080)

@@ -1,7 +1,8 @@
 # directories
 node_modules/*
-static/*
+static/gen/*
 
 # files
+.DS_Store
 package-lock.json
 coffee.db

@@ -1,12 +1,23 @@
 {% extends "base.html" %}
 
-{% set title = 'Caffeinator 3000' %}
+{% set section = 'Caffeinator 3000' %}
 
 {% block content %}
-    <h1>CleanCoffee</h1>
-    <select>
-    {% for employee in employees %}
-            <option value="e">{{ employee }}</option>
-    {% endfor %}
-    </select>
+    <table class="table table-dark table-striped" id="employeeTable">
+        <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Last clean</th>
+              <th scope="col">Total cleans</th>
+              <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+          <!-- Dynamic magic. -->
+        </tbody>
+    </table>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" id="employeeName" placeholder="Full name" aria-label="Full name" aria-describedby="add">
+        <button class="btn btn-outline-secondary" type="button" id="add">Add to list</button>
+    </div>
 {% endblock %}
