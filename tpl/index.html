@@ -3,12 +3,17 @@
 {% set section = 'Caffeinator 3000' %}
 
 {% block content %}
+    <div id="chartArea">
+      <canvas id="habitsChart"></canvas>
+    </div>
+
     <table class="table table-dark table-striped" id="employeeTable">
         <thead>
             <tr>
               <th scope="col">Name</th>
               <th scope="col">Last clean</th>
-              <th scope="col">Total cleans</th>
+              <th scope="col">Cleans</th>
+              <th scope="col">Drinks</th>
               <th scope="col">Actions</th>
             </tr>
         </thead>

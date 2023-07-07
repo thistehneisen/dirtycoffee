@@ -22,7 +22,7 @@ body {
 }
 
 .cover-container {
-  max-width: 42em;
+  max-width: 50em;
 }
 
 
@@ -50,4 +50,9 @@ body {
 .nav-masthead .active {
   color: #fff;
   border-bottom-color: #fff;
+}
+
+[disabled] {
+  cursor: not-allowed;
+  pointer-events: all !important;
 }

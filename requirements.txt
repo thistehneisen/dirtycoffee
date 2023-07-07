@@ -1,3 +1,6 @@
 flask
 flask-assets
 flask_sqlalchemy
+rcssmin
+rjsmin
+bleach
